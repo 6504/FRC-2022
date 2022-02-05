@@ -108,8 +108,9 @@ public class Robot extends TimedRobot {
             m_autonomousCommand.cancel();
         }
 
-        driveCommand = new DriveCommand();
-        driveCommand.start();
+        driveCommand = new DriveCommand(RobotContainer.getInstance().m_driveSubsystem);
+        //driveCommand.start();
+        RobotContainer.getInstance().m_driveSubsystem.setDefaultCommand(driveCommand);
     }
 
     /**
