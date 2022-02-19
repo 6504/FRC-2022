@@ -22,7 +22,7 @@ public class IntakeSubsystem extends SubsystemBase {
   private CANSparkMax liftMotorRight;
   private CANSparkMax intake;
   private MotorControllerGroup liftMotorControllerGroup;
-  
+
 
   public IntakeSubsystem() {
     liftMotorLeft = new CANSparkMax(14, MotorType.kBrushless);
@@ -65,5 +65,12 @@ public class IntakeSubsystem extends SubsystemBase {
     liftMotorControllerGroup.set(0);
   }
 
+  public void liftDown(double power){
+    liftMotorControllerGroup.set(-power);
+  }
+
+  public void liftUp(double power){
+    liftMotorControllerGroup.set(power);
+  }
 
 }

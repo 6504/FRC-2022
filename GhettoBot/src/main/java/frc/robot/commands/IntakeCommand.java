@@ -63,7 +63,10 @@ public class IntakeCommand extends CommandBase {
             m_IntakeSubsystem.intakeOut();
         if (RobotContainer.getInstance().getPS4DriveController().getCircleButtonPressed())
             m_IntakeSubsystem.liftOff();
-
+        if (RobotContainer.getInstance().getPS4DriveController().getL2Axis() > 0)
+            m_IntakeSubsystem.liftDown(RobotContainer.getInstance().getPS4DriveController().getL2Axis());
+        if (RobotContainer.getInstance().getPS4DriveController().getL2Axis() > 0)
+            m_IntakeSubsystem.liftUp(RobotContainer.getInstance().getPS4DriveController().getR2Axis());
     }
 
     // Called once the command ends or is interrupted.
