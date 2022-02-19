@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.IntakeCommand;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,6 +30,7 @@ import frc.robot.commands.DriveCommand;
  */
 public class Robot extends TimedRobot {
     private DriveCommand driveCommand;
+    private IntakeCommand intakeCommand;
 
     private Command m_autonomousCommand;
 
@@ -109,8 +111,10 @@ public class Robot extends TimedRobot {
         }
 
         driveCommand = new DriveCommand(RobotContainer.getInstance().m_driveSubsystem);
+        intakeCommand = new IntakeCommand(RobotContainer.getInstance().m_intakeSubsystem);
         //driveCommand.start();
         RobotContainer.getInstance().m_driveSubsystem.setDefaultCommand(driveCommand);
+        RobotContainer.getInstance().m_intakeSubsystem.setDefaultCommand(intakeCommand);
     }
 
     /**

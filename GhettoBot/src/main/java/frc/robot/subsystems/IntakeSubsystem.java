@@ -20,7 +20,9 @@ import edu.wpi.first.wpilibj.motorcontrol.Spark;
 public class IntakeSubsystem extends SubsystemBase {
   private CANSparkMax liftMotorLeft;
   private CANSparkMax liftMotorRight;
+  private CANSparkMax intake;
   private MotorControllerGroup liftMotorControllerGroup;
+  
 
   public IntakeSubsystem() {
     liftMotorLeft = new CANSparkMax(14, MotorType.kBrushless);
@@ -30,6 +32,9 @@ public class IntakeSubsystem extends SubsystemBase {
     liftMotorRight.setInverted(false);
 
     liftMotorControllerGroup = new MotorControllerGroup(liftMotorLeft, liftMotorRight);
+
+    intake = new CANSparkMax(16, MotorType.kBrushless);
+    intake.setInverted(false);
 
   }
 
@@ -43,14 +48,22 @@ public class IntakeSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run during simulation
   }
 
-  public void liftControl(double leftTriger, double rightTriger, boolean leftBumper, boolean rightBumper) {
-    if (leftBumper == false && rightBumper == false){
-      if (leftTriger > 0 && rightTriger == 0)
-        liftMotorControllerGroup.set(leftTriger);
-      if (rightTriger > 0 && leftTriger == 0)
-        liftMotorControllerGroup.set(rightTriger);
-    }
-
+  
+  public void intakeIn(){
+    intake.set(1);
   }
+  
+  public void intakeOff(){
+    intake.set(0);
+  }
+
+  public void intakeOut(){
+    intake.set(-1);
+  }
+
+  public void liftOff(){
+    liftMotorControllerGroup.set(0);
+  }
+
 
 }
