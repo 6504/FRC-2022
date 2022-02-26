@@ -73,4 +73,15 @@ public class IntakeSubsystem extends SubsystemBase {
     liftMotorControllerGroup.set(power);
   }
 
+  public void armDownAndIntakeOn(){
+    // TODO use encoders to bring it down
+    // TODO start intake
+  }
+
+  public void armUpAndIntakeOff(){
+    // TODO off intake
+    // TODO use encoders to bring it up
+    
+  }
+
 }

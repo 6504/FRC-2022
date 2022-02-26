@@ -48,4 +48,10 @@ public class ClimbSubsystem extends SubsystemBase {
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation
   }
+
+  public void reachUp() {}
+  public void reachDown() {}
+  public void armForward() {}
+  public void armBackward() {}
+
 }
