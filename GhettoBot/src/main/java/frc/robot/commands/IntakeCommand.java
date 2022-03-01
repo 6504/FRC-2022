@@ -51,6 +51,7 @@ public class IntakeCommand extends CommandBase {
     public void initialize() {
         //put the arm in starting position(up)
         //m_IntakeSubsystem.getMotorGroup()
+        System.out.println();
 
     }
 
