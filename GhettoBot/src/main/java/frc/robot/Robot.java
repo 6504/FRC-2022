@@ -18,6 +18,7 @@ import edu.wpi.first.hal.HAL;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.ClimbCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.IntakeCommand;
 
@@ -31,6 +32,7 @@ import frc.robot.commands.IntakeCommand;
 public class Robot extends TimedRobot {
     private DriveCommand driveCommand;
     private IntakeCommand intakeCommand;
+    private ClimbCommand climbCommand;
 
     private Command m_autonomousCommand;
 
@@ -112,9 +114,14 @@ public class Robot extends TimedRobot {
 
         driveCommand = new DriveCommand(RobotContainer.getInstance().m_driveSubsystem);
         intakeCommand = new IntakeCommand(RobotContainer.getInstance().m_intakeSubsystem);
+        climbCommand = new ClimbCommand(RobotContainer.getInstance().m_climbSubsystem);
+
         //driveCommand.start();
         RobotContainer.getInstance().m_driveSubsystem.setDefaultCommand(driveCommand);
         RobotContainer.getInstance().m_intakeSubsystem.setDefaultCommand(intakeCommand);
+        RobotContainer.getInstance().m_climbSubsystem.setDefaultCommand(climbCommand);
+
+        System.out.println("Hello");
     }
 
     /**

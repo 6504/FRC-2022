@@ -60,6 +60,7 @@ public class ClimbCommand extends CommandBase {
     @Override
     public void execute() {
         PS4Controller controller = RobotContainer.getInstance().getPS4DriveController();
+        System.out.println(controller.getPOV());
         if (controller.getPOV()== 0)
             m_ClimbSubsystem.reachUp();
         else if (controller.getPOV() == 180)
