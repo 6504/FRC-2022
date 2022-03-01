@@ -27,9 +27,9 @@ public class ClimbSubsystem extends SubsystemBase {
   
   public ClimbSubsystem() {
     climbArmLeft = new CANSparkMax(17, MotorType.kBrushless);
-    climbArmLeft.setInverted(false);
+    climbArmLeft.setInverted(true);
 
-    climbArmRight = new CANSparkMax(18, MotorType.kBrushless);
+    climbArmRight = new CANSparkMax(16, MotorType.kBrushless);
     climbArmRight.setInverted(false);
 
     pivotArmMotorControllerGroup = new MotorControllerGroup(climbArmLeft, climbArmRight);
@@ -49,9 +49,21 @@ public class ClimbSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run during simulation
   }
 
-  public void reachUp() {}
-  public void reachDown() {}
-  public void armForward() {}
-  public void armBackward() {}
+  public void reachUp() {
+    reachMotor.set(0.2);
+  }
+  public void reachDown() {
+    reachMotor.set(-0.2);
+  }
+  public void armForward() {
+    pivotArmMotorControllerGroup.set(0.2);
+  }
+  public void armBackward() {
+    pivotArmMotorControllerGroup.set(-0.2);
+  }
+
+  public void resetArms() {
+    pivotArmMotorControllerGroup.set(0);
+  }
 
 }

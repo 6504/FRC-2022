@@ -60,9 +60,10 @@ public class AutonomousCommand extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_driveSubsystem.arcadeDrive(.5,0);
-        //Timer.delay(5);
-        //m_driveSubsystem.arcadeDrive(0,0);
+        m_driveSubsystem.arcadeDrive(.5,0);//move forward 
+        Timer.delay(5);
+        m_driveSubsystem.arcadeDrive(0,0);
+        //
     }
 
     // Called once the command ends or is interrupted.

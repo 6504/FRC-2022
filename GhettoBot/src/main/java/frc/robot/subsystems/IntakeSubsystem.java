@@ -16,24 +16,24 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.motorcontrol.VictorSP;
 
 public class IntakeSubsystem extends SubsystemBase {
-  private CANSparkMax liftMotorLeft;
-  private CANSparkMax liftMotorRight;
-  private CANSparkMax intake;
+  private CANSparkMax liftMotor;
+  private VictorSP intake;
   private MotorControllerGroup liftMotorControllerGroup;
 
 
   public IntakeSubsystem() {
-    liftMotorLeft = new CANSparkMax(14, MotorType.kBrushless);
-    liftMotorLeft.setInverted(false);
+    liftMotor = new CANSparkMax(14, MotorType.kBrushless);
+    liftMotor.setInverted(false);
 
-    liftMotorRight = new CANSparkMax(15, MotorType.kBrushless);
-    liftMotorRight.setInverted(false);
+    // liftMotorRight = new CANSparkMax(16, MotorType.kBrushless);
+    // liftMotorRight.setInverted(false);
 
-    liftMotorControllerGroup = new MotorControllerGroup(liftMotorLeft, liftMotorRight);
+    // liftMotorControllerGroup = new MotorControllerGroup(liftMotorLeft, liftMotorRight);
 
-    intake = new CANSparkMax(16, MotorType.kBrushless);
+    intake = new VictorSP(0);
     intake.setInverted(false);
 
   }
@@ -62,15 +62,15 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void liftOff(){
-    liftMotorControllerGroup.set(0);
+    liftMotor.set(0);
   }
 
   public void liftDown(double power){
-    liftMotorControllerGroup.set(-power);
+    liftMotor.set(-power);
   }
 
   public void liftUp(double power){
-    liftMotorControllerGroup.set(power);
+    liftMotor.set(power);
   }
 
   public void armDownAndIntakeOn(){

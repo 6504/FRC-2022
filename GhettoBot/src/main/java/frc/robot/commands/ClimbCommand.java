@@ -13,6 +13,9 @@
 // ROBOTBUILDER TYPE: Command.
 
 package frc.robot.commands;
+import javax.lang.model.util.ElementScanner6;
+
+import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
@@ -56,7 +59,17 @@ public class ClimbCommand extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-
+        PS4Controller controller = RobotContainer.getInstance().getPS4DriveController();
+        if (controller.getPOV()== 0)
+            m_ClimbSubsystem.reachUp();
+        else if (controller.getPOV() == 180)
+            m_ClimbSubsystem.reachDown();
+        else if (controller.getPOV() == 90)
+            m_ClimbSubsystem.armForward();
+        else if (controller.getPOV() == 270)
+            m_ClimbSubsystem.armBackward();
+        else
+            m_ClimbSubsystem.resetArms();
     }
 
     // Called once the command ends or is interrupted.
