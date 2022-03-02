@@ -50,7 +50,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
   
   public void intakeIn(){
-    intake.set(1);
+    intake.set(-.5);
   }
   
   public void intakeOff(){
@@ -58,7 +58,7 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void intakeOut(){
-    intake.set(-1);
+    intake.set(0.5);
   }
 
   public void liftOff(){
