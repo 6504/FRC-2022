@@ -66,10 +66,13 @@ public class IntakeCommand extends CommandBase {
             m_IntakeSubsystem.intakeOut();
         if (controller.getCircleButtonPressed())
             m_IntakeSubsystem.liftOff();
-        if (controller.getL2Axis() > 0)
+
+        if (controller.getL2Axis() > 0.01)
             m_IntakeSubsystem.liftDown(controller.getL2Axis());
-        if (controller.getR2Axis() > 0)
+        else if (controller.getR2Axis() > 0.01)
             m_IntakeSubsystem.liftUp(controller.getR2Axis());
+        else
+            m_IntakeSubsystem.liftOff();
 
             //pressing L1 button brings arm down and turns on intake
             //pressing L2 turns off intake and brings arm up

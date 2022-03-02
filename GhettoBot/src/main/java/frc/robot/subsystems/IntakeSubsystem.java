@@ -19,14 +19,14 @@ import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.motorcontrol.VictorSP;
 
 public class IntakeSubsystem extends SubsystemBase {
-  private CANSparkMax liftMotor;
+  private CANSparkMax linkageMotor;
   private VictorSP intake;
   private MotorControllerGroup liftMotorControllerGroup;
 
 
   public IntakeSubsystem() {
-    liftMotor = new CANSparkMax(14, MotorType.kBrushless);
-    liftMotor.setInverted(false);
+    linkageMotor = new CANSparkMax(15, MotorType.kBrushless);
+    linkageMotor.setInverted(false);
 
     // liftMotorRight = new CANSparkMax(16, MotorType.kBrushless);
     // liftMotorRight.setInverted(false);
@@ -62,15 +62,15 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void liftOff(){
-    liftMotor.set(0);
+    linkageMotor.set(0);
   }
 
   public void liftDown(double power){
-    liftMotor.set(-power);
+    linkageMotor.set(-power * power);
   }
 
   public void liftUp(double power){
-    liftMotor.set(power);
+    linkageMotor.set(power * power);
   }
 
   public void armDownAndIntakeOn(){
