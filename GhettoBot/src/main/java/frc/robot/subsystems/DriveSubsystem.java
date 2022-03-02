@@ -108,6 +108,9 @@ differentialDrive1.setMaxOutput(1.0);
 
     }
 
+    public CANSparkMax getMasterMotor() {
+        return motorController4;
+    }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
