@@ -51,10 +51,10 @@ public class ClimbSubsystem extends SubsystemBase {
   }
 
   public void reachUp() {
-    reachMotor.set(0.2);
+    //reachMotor.set(0.2);
   }
   public void reachDown() {
-    reachMotor.set(-0.2);
+    //reachMotor.set(-0.2);
   }
   public void armForward() {
     pivotArmMotorControllerGroup.set(0.2);
