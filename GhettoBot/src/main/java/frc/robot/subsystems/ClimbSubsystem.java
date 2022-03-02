@@ -34,8 +34,9 @@ public class ClimbSubsystem extends SubsystemBase {
 
     pivotArmMotorControllerGroup = new MotorControllerGroup(climbArmLeft, climbArmRight);
 
-    reachMotor = new CANSparkMax(19, MotorType.kBrushless);
-    reachMotor.setInverted(false);
+    // We don't have an ID 19
+    //reachMotor = new CANSparkMax(19, MotorType.kBrushless);
+    //reachMotor.setInverted(false);
 
   }
 

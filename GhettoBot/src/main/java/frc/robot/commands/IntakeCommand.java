@@ -51,7 +51,6 @@ public class IntakeCommand extends CommandBase {
     public void initialize() {
         //put the arm in starting position(up)
         //m_IntakeSubsystem.getMotorGroup()
-        System.out.println();
 
     }
 
@@ -69,7 +68,7 @@ public class IntakeCommand extends CommandBase {
             m_IntakeSubsystem.liftOff();
         if (controller.getL2Axis() > 0)
             m_IntakeSubsystem.liftDown(controller.getL2Axis());
-        if (controller.getL2Axis() > 0)
+        if (controller.getR2Axis() > 0)
             m_IntakeSubsystem.liftUp(controller.getR2Axis());
 
             //pressing L1 button brings arm down and turns on intake
