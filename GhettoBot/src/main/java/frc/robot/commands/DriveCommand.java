@@ -55,7 +55,7 @@ public class DriveCommand extends CommandBase {
     @Override
     public void execute() {
         m_driveSubsystem.arcadeDrive(RobotContainer.getInstance().getPS4DriveController().getLeftY(),
-                                     RobotContainer.getInstance().getPS4DriveController().getRightX());
+                                     -RobotContainer.getInstance().getPS4DriveController().getRightX());
     
 
     }
