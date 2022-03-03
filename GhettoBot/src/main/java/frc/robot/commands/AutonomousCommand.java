@@ -64,17 +64,17 @@ public class AutonomousCommand extends CommandBase {
     @Override
     public void execute() {
         double autoTimeElapsed = Timer.getFPGATimestamp() - startTime;
-        if(autoTimeElapsed < 3){//3 sec
-            m_driveSubsystem.arcadeDrive(.5,0);//move forward 
+        if(autoTimeElapsed < 3){//run for 3 sec
+            m_driveSubsystem.arcadeDrive(-.5,0);//move forward 
         }
-        else if(autoTimeElapsed < 7){//4 sec
+        else if(autoTimeElapsed < 7){//run for 4 sec
             m_driveSubsystem.arcadeDrive(0,0);//stop moving
             m_IntakeSubsystem.intakeOut();//shoot ball
         }
-        else if(autoTimeElapsed < 8){//1 sec
-            m_IntakeSubsystem.intakeOff();//turn off intake
+        else if(autoTimeElapsed < 9){//run for 1 sec
+            m_IntakeSubsystem.intakeOff();//turn off intake3
         }
-        else if(autoTimeElapsed < 13){//5 sec
+        else if(autoTimeElapsed < 13){//run for 5 sec
             m_driveSubsystem.arcadeDrive(.5,0);//Move back  
         }
        
