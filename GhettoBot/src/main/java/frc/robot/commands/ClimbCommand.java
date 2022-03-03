@@ -65,12 +65,16 @@ public class ClimbCommand extends CommandBase {
             m_ClimbSubsystem.reachUp();
         else if (controller.getPOV() == 180)
             m_ClimbSubsystem.reachDown();
-        else if (controller.getPOV() == 90)
+        else
+            m_ClimbSubsystem.stopReach();
+
+        
+        if (controller.getPOV() == 90)
             m_ClimbSubsystem.armForward();
         else if (controller.getPOV() == 270)
             m_ClimbSubsystem.armBackward();
         else
-            m_ClimbSubsystem.resetArms();
+            m_ClimbSubsystem.stopArms();
     }
 
     // Called once the command ends or is interrupted.
