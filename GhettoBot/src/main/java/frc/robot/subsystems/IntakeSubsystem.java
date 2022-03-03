@@ -27,6 +27,7 @@ public class IntakeSubsystem extends SubsystemBase {
   private VictorSP intake;
   private MotorControllerGroup liftMotorControllerGroup;
   private DigitalInput intakeLowerLimit;
+  private DigitalInput intakeUpperLimit;
 
   //pid controller stuff
   private SparkMaxPIDController m_pidController;
@@ -37,6 +38,9 @@ public class IntakeSubsystem extends SubsystemBase {
     linkageMotor = new CANSparkMax(15, MotorType.kBrushless);
     linkageMotor.setInverted(false);
     linkageMotor.setIdleMode(IdleMode.kBrake);
+
+    intakeLowerLimit = new DigitalInput(1);
+    intakeUpperLimit = new DigitalInput(2);
 
     // liftMotorRight = new CANSparkMax(16, MotorType.kBrushless);
     // liftMotorRight.setInverted(false);
@@ -142,8 +146,7 @@ public class IntakeSubsystem extends SubsystemBase {
     intakeIn();
     if (!intakeLowerLimit.get()){
       linkageMotor.set(-0.5);
-    }
-    else{
+    } else {
       linkageMotor.set(0);
     }
 
@@ -152,7 +155,13 @@ public class IntakeSubsystem extends SubsystemBase {
   public void armUpAndIntakeOff(){
     // TODO off intake
     // TODO use encoders to bring it up
-    
+    intakeOff();
+    if (!intakeUpperLimit.get()){
+      linkageMotor.set(0.5);
+    } else {
+      linkageMotor.set(0);
+    }
+
   }
 
 
