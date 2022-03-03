@@ -77,6 +77,21 @@ public class IntakeCommand extends CommandBase {
         if (controller.getR1Button())
             m_IntakeSubsystem.armUpAndIntakeOff();
         else if (controller.getL1Button())
+  
+        
+        //set isReset = false -global variable
+        //set l1waspressed = false
+            
+            //if l1 pressed then 
+                //set l1waspressed = true
+            //if l1waspressed then
+                //move motor down
+            //if switch touched or cross pressed
+                //l1waspressed = false
+                //isReset = true
+            //if l1waspressed is false and isReset is true
+                //stop motor
+                //isReset = false
             m_IntakeSubsystem.armDownAndIntakeOn();
 
             //pressing L1 button brings arm down and turns on intake
