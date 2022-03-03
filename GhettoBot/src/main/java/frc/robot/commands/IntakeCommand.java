@@ -74,6 +74,11 @@ public class IntakeCommand extends CommandBase {
         else
             m_IntakeSubsystem.liftOff();
 
+        if (controller.getR1Button())
+            m_IntakeSubsystem.armUpAndIntakeOff();
+        else if (controller.getL1Button())
+            m_IntakeSubsystem.armDownAndIntakeOn();
+
             //pressing L1 button brings arm down and turns on intake
             //pressing L2 turns off intake and brings arm up
     }
