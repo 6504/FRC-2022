@@ -63,14 +63,21 @@ public class AutonomousCommand extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_driveSubsystem.arcadeDrive(.5,0);//move forward 
-        Timer.delay(5);
-        m_driveSubsystem.arcadeDrive(0,0);//stop moving
-        m_IntakeSubsystem.intakeOut();//shoot ball
-        Timer.delay(5);
-        m_IntakeSubsystem.intakeOff();
-        Timer.delay(5);
-        m_driveSubsystem.arcadeDrive(.5,0);//Move back  
+        double autoTimeElapsed = Timer.getFPGATimestamp() - startTime;
+        if(autoTimeElapsed < 3){//3 sec
+            m_driveSubsystem.arcadeDrive(.5,0);//move forward 
+        }
+        else if(autoTimeElapsed < 7){//4 sec
+            m_driveSubsystem.arcadeDrive(0,0);//stop moving
+            m_IntakeSubsystem.intakeOut();//shoot ball
+        }
+        else if(autoTimeElapsed < 8){//1 sec
+            m_IntakeSubsystem.intakeOff();//turn off intake
+        }
+        else if(autoTimeElapsed < 13){//5 sec
+            m_driveSubsystem.arcadeDrive(.5,0);//Move back  
+        }
+       
     }
 
     // Called once the command ends or is interrupted.
