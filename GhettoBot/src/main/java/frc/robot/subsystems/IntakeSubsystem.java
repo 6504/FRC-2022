@@ -125,7 +125,7 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void intakeOut(){
-    intake.set(0.5);
+    intake.set(0.3);
   }
 
   public void liftOff(){
