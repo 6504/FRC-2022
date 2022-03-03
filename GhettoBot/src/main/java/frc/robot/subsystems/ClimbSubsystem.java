@@ -56,9 +56,14 @@ public class ClimbSubsystem extends SubsystemBase {
     reachMotor.set(1);
   }
   public void reachDown() {
+    // Go down unless lower limit is hit
     if (!reachLowerLimit.get())
     {
       reachMotor.set(-1);
+    }
+    else
+    {
+      stopReach();
     }
   }
 
