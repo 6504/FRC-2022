@@ -72,7 +72,7 @@ public class IntakeCommand extends CommandBase {
         else if (controller.getR2Axis() > 0.01)
             m_IntakeSubsystem.liftUp(controller.getR2Axis());
         else
-            m_IntakeSubsystem.liftOff();
+            m_IntakeSubsystem.holdLiftPosition();
 
         // Disabling this until the limit switches are set up
         /*if (controller.getR1Button())

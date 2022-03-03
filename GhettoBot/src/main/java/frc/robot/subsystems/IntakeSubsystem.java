@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkMaxPIDController;
+import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -28,6 +29,7 @@ public class IntakeSubsystem extends SubsystemBase {
   private MotorControllerGroup liftMotorControllerGroup;
   private DigitalInput intakeLowerLimit;
   private DigitalInput intakeUpperLimit;
+  private boolean holdLiftPos = true;
 
   //pid controller stuff
   private SparkMaxPIDController m_pidController;
@@ -79,7 +81,8 @@ public class IntakeSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Feed Forward", kFF);
     SmartDashboard.putNumber("Max Output", kMaxOutput);
     SmartDashboard.putNumber("Min Output", kMinOutput);
-    SmartDashboard.putNumber("Set Rotations", 0);
+    SmartDashboard.putNumber("Set Rotations", linkageMotor.getEncoder().getPosition());
+    SmartDashboard.putNumber("Cur Rotations", linkageMotor.getEncoder().getPosition());
   }
 
   @Override
@@ -94,6 +97,7 @@ public class IntakeSubsystem extends SubsystemBase {
     double max = SmartDashboard.getNumber("Max Output", 0);
     double min = SmartDashboard.getNumber("Min Output", 0);
     double rotations = SmartDashboard.getNumber("Set Rotations", 0);
+    SmartDashboard.putNumber("Cur Rotations", linkageMotor.getEncoder().getPosition());
 
     // if PID coefficients on SmartDashboard have changed, write new values to controller
     if((p != kP)) { m_pidController.setP(p); kP = p; }
@@ -132,12 +136,29 @@ public class IntakeSubsystem extends SubsystemBase {
     linkageMotor.set(0);
   }
 
+  public void holdLiftPosition()
+  {
+    if (!holdLiftPos)
+    {
+      liftOff();
+      holdLiftPos = true;
+      double curPosition = linkageMotor.getEncoder().getPosition();
+      linkageMotor.getPIDController().setReference(curPosition, ControlType.kPosition);
+      
+      SmartDashboard.putNumber("Set Rotations", curPosition);
+    }
+  }
+
   public void liftDown(double power){
-    linkageMotor.set(-power * power);
+    holdLiftPos = false;
+    double adjustedPower = Math.min(-power * power, -0.5);
+    linkageMotor.set(adjustedPower);
   }
 
   public void liftUp(double power){
-    linkageMotor.set(power * power);
+    holdLiftPos = false;
+    double adjustedPower = Math.min(power * power, 0.5);
+    linkageMotor.set(adjustedPower);
   }
 
   public void armDownAndIntakeOn(){
