@@ -101,6 +101,8 @@ public class IntakeSubsystem extends SubsystemBase {
       m_pidController.setOutputRange(min, max); 
       kMinOutput = min; kMaxOutput = max; 
     }
+
+    //PIDController objects are commanded to a set point using the SetReference() method.
     m_pidController.setReference(rotations, CANSparkMax.ControlType.kPosition);
   }
 
