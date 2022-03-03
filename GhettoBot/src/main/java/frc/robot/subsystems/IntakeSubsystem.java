@@ -140,6 +140,7 @@ public class IntakeSubsystem extends SubsystemBase {
     linkageMotor.set(power * power);
   }
 
+  /*
   public void armDownAndIntakeOn(){
     // TODO use encoders to bring it down
     // TODO start intake
@@ -163,6 +164,6 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
   }
-
+  */
 
 }
