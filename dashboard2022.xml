@@ -1,8 +1,5 @@
 <xml version="1.0">
 <dashboard>
-	<widget field="Cur Rotations" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="163" y="67"/>
-	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
 		<location x="212" y="16"/>
 		<property name="Text" value="Connection Indicator"/>
@@ -39,30 +36,6 @@
 	<widget field="Auto Mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
 		<location x="0" y="0"/>
 	</widget>
-	<widget field="Feed Forward" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="349" y="70"/>
-	</widget>
-	<widget field="Min Output" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="371" y="18"/>
-	</widget>
-	<widget field="Max Output" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="510" y="36"/>
-	</widget>
-	<widget field="P Gain" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="335" y="107"/>
-	</widget>
-	<widget field="I Zone" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="409" y="158"/>
-	</widget>
-	<widget field="I Gain" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="483" y="107"/>
-	</widget>
-	<widget field="Set Rotations" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="187" y="46"/>
-	</widget>
-	<widget field="D Gain" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="257" y="167"/>
-	</widget>
 </dashboard>
 <live-window>
 	<widget field="ClimbSubsystem" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
@@ -78,21 +51,50 @@
 		<widget field="DigitalInput[0]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
 			<location x="6" y="16"/>
 			<height>20</height>
-			<width>88</width>
+			<width>108</width>
 		</widget>
 		<widget field="DigitalInput[1]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
 			<location x="6" y="36"/>
 			<height>20</height>
-			<width>88</width>
+			<width>108</width>
 		</widget>
 		<widget field="DigitalInput[2]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
 			<location x="6" y="56"/>
 			<height>20</height>
-			<width>88</width>
+			<width>108</width>
+		</widget>
+		<widget field="DigitalInput[3]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="6" y="76"/>
+			<height>20</height>
+			<width>108</width>
+		</widget>
+		<widget field="DigitalInput[4]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="6" y="96"/>
+			<height>20</height>
+			<width>108</width>
+		</widget>
+		<widget field="DigitalInput[5]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="6" y="116"/>
+			<height>20</height>
+			<width>108</width>
+		</widget>
+		<widget field="DigitalInput[6]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="6" y="136"/>
+			<height>20</height>
+			<width>108</width>
 		</widget>
 		<location x="15" y="14"/>
-		<width>100</width>
-		<height>82</height>
+		<width>120</width>
+		<height>162</height>
 	</widget>
 </live-window>
+	<hidden field="I Gain"/>
+	<hidden field="Max Output"/>
+	<hidden field="D Gain"/>
+	<hidden field="P Gain"/>
+	<hidden field="Feed Forward"/>
+	<hidden field="Min Output"/>
+	<hidden field="Cur Rotations"/>
+	<hidden field="Set Rotations"/>
+	<hidden field="I Zone"/>
 </xml>
