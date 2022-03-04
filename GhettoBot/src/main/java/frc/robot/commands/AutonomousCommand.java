@@ -63,7 +63,7 @@ public class AutonomousCommand extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        double autoTimeElapsed = Timer.getFPGATimestamp() - startTime;
+        /*double autoTimeElapsed = Timer.getFPGATimestamp() - startTime;
         if(autoTimeElapsed < 3){//run for 3 sec
             m_driveSubsystem.arcadeDrive(-.5,0);//move forward 
         }
@@ -76,7 +76,7 @@ public class AutonomousCommand extends CommandBase {
         }
         else if(autoTimeElapsed < 13){//run for 5 sec
             m_driveSubsystem.arcadeDrive(.5,0);//Move back  
-        }
+        }*/
        
     }
 
