@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -30,9 +31,11 @@ public class ClimbSubsystem extends SubsystemBase {
   public ClimbSubsystem() {
     climbArmLeft = new CANSparkMax(17, MotorType.kBrushless);
     climbArmLeft.setInverted(true);
+    climbArmLeft.setIdleMode(IdleMode.kBrake);
 
     climbArmRight = new CANSparkMax(16, MotorType.kBrushless);
     climbArmRight.setInverted(false);
+    climbArmRight.setIdleMode(IdleMode.kBrake);
 
     pivotArmMotorControllerGroup = new MotorControllerGroup(climbArmLeft, climbArmRight);
 
