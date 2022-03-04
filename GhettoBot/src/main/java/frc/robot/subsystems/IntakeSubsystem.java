@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
@@ -73,34 +74,38 @@ public class IntakeSubsystem extends SubsystemBase {
     m_pidController.setFF(kFF);
     m_pidController.setOutputRange(kMinOutput, kMaxOutput);
 
+    // Reset encoder
+    RelativeEncoder encoder = linkageMotor.getEncoder();
+    encoder.setPosition(0);
+
     // display PID coefficients on SmartDashboard
-    SmartDashboard.putNumber("P Gain", kP);
+    /*SmartDashboard.putNumber("P Gain", kP);
     SmartDashboard.putNumber("I Gain", kI);
     SmartDashboard.putNumber("D Gain", kD);
     SmartDashboard.putNumber("I Zone", kIz);
     SmartDashboard.putNumber("Feed Forward", kFF);
     SmartDashboard.putNumber("Max Output", kMaxOutput);
     SmartDashboard.putNumber("Min Output", kMinOutput);
-    SmartDashboard.putNumber("Set Rotations", linkageMotor.getEncoder().getPosition());
-    SmartDashboard.putNumber("Cur Rotations", linkageMotor.getEncoder().getPosition());
+    SmartDashboard.putNumber("Set Rotations", linkageMotor.getEncoder().getPosition());*/
+    SmartDashboard.putNumber("Intake Linkage Position", linkageMotor.getEncoder().getPosition());
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
     // read PID coefficients from SmartDashboard
-    double p = SmartDashboard.getNumber("P Gain", 0);
+    /*double p = SmartDashboard.getNumber("P Gain", 0);
     double i = SmartDashboard.getNumber("I Gain", 0);
     double d = SmartDashboard.getNumber("D Gain", 0);
     double iz = SmartDashboard.getNumber("I Zone", 0);
     double ff = SmartDashboard.getNumber("Feed Forward", 0);
     double max = SmartDashboard.getNumber("Max Output", 0);
     double min = SmartDashboard.getNumber("Min Output", 0);
-    double rotations = SmartDashboard.getNumber("Set Rotations", 0);
-    SmartDashboard.putNumber("Cur Rotations", linkageMotor.getEncoder().getPosition());
+    double rotations = SmartDashboard.getNumber("Set Rotations", 0);*/
+    SmartDashboard.putNumber("Intake Linkage Position", linkageMotor.getEncoder().getPosition());
 
     // if PID coefficients on SmartDashboard have changed, write new values to controller
-    if((p != kP)) { m_pidController.setP(p); kP = p; }
+    /*if((p != kP)) { m_pidController.setP(p); kP = p; }
     if((i != kI)) { m_pidController.setI(i); kI = i; }
     if((d != kD)) { m_pidController.setD(d); kD = d; }
     if((iz != kIz)) { m_pidController.setIZone(iz); kIz = iz; }
@@ -108,10 +113,10 @@ public class IntakeSubsystem extends SubsystemBase {
     if((max != kMaxOutput) || (min != kMinOutput)) { 
       m_pidController.setOutputRange(min, max); 
       kMinOutput = min; kMaxOutput = max; 
-    }
+    }*/
 
     //PIDController objects are commanded to a set point using the SetReference() method.
-    m_pidController.setReference(rotations, CANSparkMax.ControlType.kPosition);
+    //m_pidController.setReference(rotations, CANSparkMax.ControlType.kPosition);
   }
 
   @Override
@@ -145,7 +150,7 @@ public class IntakeSubsystem extends SubsystemBase {
       double curPosition = linkageMotor.getEncoder().getPosition();
       linkageMotor.getPIDController().setReference(curPosition, ControlType.kPosition);
       
-      SmartDashboard.putNumber("Set Rotations", curPosition);
+      SmartDashboard.putNumber("Intake Linkage Position", curPosition);
     }
   }
 
