@@ -81,7 +81,7 @@ rightMotorControllerGroup = new MotorControllerGroup(motorController6, motorCont
 differentialDrive1 = new DifferentialDrive(leftMotorControllerGroup, rightMotorControllerGroup);
  addChild("Differential Drive 1",differentialDrive1);
  differentialDrive1.setSafetyEnabled(true);
-differentialDrive1.setExpiration(0.1);
+differentialDrive1.setExpiration(0.5);
 differentialDrive1.setMaxOutput(1.0);
 
 
