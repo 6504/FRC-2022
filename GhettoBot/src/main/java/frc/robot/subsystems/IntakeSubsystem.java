@@ -202,7 +202,7 @@ public class IntakeSubsystem extends SubsystemBase {
     else
     {
       holdLiftPos = false;
-      double adjustedPower = Math.max(-power * power, -0.3);
+      double adjustedPower = Math.max(-power * power, -0.1);
       linkageMotor.set(adjustedPower);
     }
   }
