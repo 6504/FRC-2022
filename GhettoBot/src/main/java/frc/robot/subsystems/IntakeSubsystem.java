@@ -125,6 +125,13 @@ public class IntakeSubsystem extends SubsystemBase {
     //m_pidController.setReference(rotations, CANSparkMax.ControlType.kPosition);
     SmartDashboard.putBoolean("Starting Position Configured", startingPositionConfigured);
     SmartDashboard.putBoolean("Encoder Reset To Lower Limit", encoderResetToLowerLimit);
+    
+    if (intakeLowerLimit.get() == true)
+    {
+      // Reset the encoder to 0 since we're at the intake lower limit
+      linkageMotor.getEncoder().setPosition(0);
+      encoderResetToLowerLimit = true;
+    }
 
     // Do we need to configure the starting position?
     if (false == startingPositionConfigured)
@@ -132,16 +139,7 @@ public class IntakeSubsystem extends SubsystemBase {
       linkageMotor.setIdleMode(IdleMode.kCoast);
 
       // Reset the starting position
-      if (false == encoderResetToLowerLimit)
-      {
-        if (intakeLowerLimit.get() == true)
-        {
-          // Reset the encoder to 0 since we're at the intake lower limit
-          linkageMotor.getEncoder().setPosition(0);
-          encoderResetToLowerLimit = true;
-        }
-      }
-      else
+      if (encoderResetToLowerLimit)
       {
         // Starting position has been configured. Wait until a student has lifted
         // the intake into position and lock it there
@@ -191,7 +189,8 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public boolean atLowerLimit() {
-    return intakeLowerLimit.get();
+    return false;
+    //return intakeLowerLimit.get();
   }
 
   public void liftDown(double power){
@@ -209,7 +208,8 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public boolean atUpperLimit()
   {
-    return encoderResetToLowerLimit && linkageMotor.getEncoder().getPosition() > upperLimit;
+    return false;
+    //return encoderResetToLowerLimit && linkageMotor.getEncoder().getPosition() > upperLimit;
   }
 
   public void liftUp(double power){
