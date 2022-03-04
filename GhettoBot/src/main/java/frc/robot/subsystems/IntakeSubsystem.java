@@ -29,7 +29,7 @@ public class IntakeSubsystem extends SubsystemBase {
   private VictorSP intake;
   private MotorControllerGroup liftMotorControllerGroup;
   private DigitalInput intakeLowerLimit;
-  private DigitalInput intakeUpperLimit;
+  //private DigitalInput intakeUpperLimit;
   private boolean holdLiftPos = false;
   private boolean startingPositionConfigured = false;
   private boolean encoderResetToLowerLimit = false;
@@ -38,7 +38,7 @@ public class IntakeSubsystem extends SubsystemBase {
   private SparkMaxPIDController m_pidController;
   public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
 
-  private static double upperLimit = 19;
+  private static double upperLimit = 21;
 
 
   public IntakeSubsystem() {
@@ -47,7 +47,7 @@ public class IntakeSubsystem extends SubsystemBase {
     linkageMotor.setIdleMode(IdleMode.kBrake);
 
     intakeLowerLimit = new DigitalInput(3);
-    intakeUpperLimit = new DigitalInput(4);
+    //intakeUpperLimit = new DigitalInput(4);
 
     // liftMotorRight = new CANSparkMax(16, MotorType.kBrushless);
     // liftMotorRight.setInverted(false);
@@ -125,11 +125,13 @@ public class IntakeSubsystem extends SubsystemBase {
     //m_pidController.setReference(rotations, CANSparkMax.ControlType.kPosition);
     SmartDashboard.putBoolean("Starting Position Configured", startingPositionConfigured);
     SmartDashboard.putBoolean("Encoder Reset To Lower Limit", encoderResetToLowerLimit);
+    SmartDashboard.putBoolean("At Intake Lower Limit", intakeLowerLimit.get());
     
     if (intakeLowerLimit.get() == true)
     {
       // Reset the encoder to 0 since we're at the intake lower limit
       linkageMotor.getEncoder().setPosition(0);
+      linkageMotor.getPIDController().setReference(0, ControlType.kPosition);
       encoderResetToLowerLimit = true;
     }
 
@@ -143,7 +145,7 @@ public class IntakeSubsystem extends SubsystemBase {
       {
         // Starting position has been configured. Wait until a student has lifted
         // the intake into position and lock it there
-        if (linkageMotor.getEncoder().getPosition() >= upperLimit)
+        if (linkageMotor.getEncoder().getPosition() >= 18)
         {
           linkageMotor.setIdleMode(IdleMode.kBrake);
           holdLiftPosition();
@@ -189,8 +191,7 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public boolean atLowerLimit() {
-    return false;
-    //return intakeLowerLimit.get();
+    return intakeLowerLimit.get();
   }
 
   public void liftDown(double power){
@@ -208,8 +209,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public boolean atUpperLimit()
   {
-    return false;
-    //return encoderResetToLowerLimit && linkageMotor.getEncoder().getPosition() > upperLimit;
+    return encoderResetToLowerLimit && linkageMotor.getEncoder().getPosition() > upperLimit;
   }
 
   public void liftUp(double power){

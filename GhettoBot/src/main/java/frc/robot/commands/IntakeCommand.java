@@ -58,7 +58,7 @@ public class IntakeCommand extends CommandBase {
     public void initialize() {
         //put the arm in starting position(up)
         //m_IntakeSubsystem.getMotorGroup()
-
+        m_IntakeSubsystem.holdLiftPosition();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
