@@ -41,8 +41,8 @@ public class IntakeSubsystem extends SubsystemBase {
     linkageMotor.setInverted(false);
     linkageMotor.setIdleMode(IdleMode.kBrake);
 
-    intakeLowerLimit = new DigitalInput(1);
-    intakeUpperLimit = new DigitalInput(2);
+    intakeLowerLimit = new DigitalInput(3);
+    intakeUpperLimit = new DigitalInput(4);
 
     // liftMotorRight = new CANSparkMax(16, MotorType.kBrushless);
     // liftMotorRight.setInverted(false);
@@ -151,13 +151,13 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public void liftDown(double power){
     holdLiftPos = false;
-    double adjustedPower = Math.min(-power * power, -0.5);
+    double adjustedPower = Math.max(-power * power, -0.3);
     linkageMotor.set(adjustedPower);
   }
 
   public void liftUp(double power){
     holdLiftPos = false;
-    double adjustedPower = Math.min(power * power, 0.5);
+    double adjustedPower = Math.min(power * power, 0.3);
     linkageMotor.set(adjustedPower);
   }
 
