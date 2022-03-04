@@ -30,7 +30,9 @@ public class IntakeSubsystem extends SubsystemBase {
   private MotorControllerGroup liftMotorControllerGroup;
   private DigitalInput intakeLowerLimit;
   private DigitalInput intakeUpperLimit;
-  private boolean holdLiftPos = true;
+  private boolean holdLiftPos = false;
+  private boolean startingPositionConfigured = false;
+  private boolean encoderResetToLowerLimit = false;
 
   //pid controller stuff
   private SparkMaxPIDController m_pidController;
@@ -88,6 +90,8 @@ public class IntakeSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Min Output", kMinOutput);
     SmartDashboard.putNumber("Set Rotations", linkageMotor.getEncoder().getPosition());*/
     SmartDashboard.putNumber("Intake Linkage Position", linkageMotor.getEncoder().getPosition());
+    SmartDashboard.putBoolean("Starting Position Configured", startingPositionConfigured);
+    SmartDashboard.putBoolean("Encoder Reset To Lower Limit", encoderResetToLowerLimit);
   }
 
   @Override
@@ -117,6 +121,36 @@ public class IntakeSubsystem extends SubsystemBase {
 
     //PIDController objects are commanded to a set point using the SetReference() method.
     //m_pidController.setReference(rotations, CANSparkMax.ControlType.kPosition);
+    SmartDashboard.putBoolean("Starting Position Configured", startingPositionConfigured);
+    SmartDashboard.putBoolean("Encoder Reset To Lower Limit", encoderResetToLowerLimit);
+
+    // Do we need to configure the starting position?
+    if (false == startingPositionConfigured)
+    {
+      linkageMotor.setIdleMode(IdleMode.kCoast);
+
+      // Reset the starting position
+      if (false == encoderResetToLowerLimit)
+      {
+        if (intakeLowerLimit.get() == true)
+        {
+          // Reset the encoder to 0 since we're at the intake lower limit
+          linkageMotor.getEncoder().setPosition(0);
+          encoderResetToLowerLimit = true;
+        }
+      }
+      else
+      {
+        // Starting position has been configured. Wait until a student has lifted
+        // the intake into position and lock it there
+        if (linkageMotor.getEncoder().getPosition() <= -18)
+        {
+          linkageMotor.setIdleMode(IdleMode.kBrake);
+          holdLiftPosition();
+          startingPositionConfigured = true;
+        }
+      }
+    }
   }
 
   @Override
