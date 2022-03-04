@@ -38,12 +38,12 @@ public class IntakeSubsystem extends SubsystemBase {
   private SparkMaxPIDController m_pidController;
   public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
 
-  private static double upperLimit = -19;
+  private static double upperLimit = 19;
 
 
   public IntakeSubsystem() {
     linkageMotor = new CANSparkMax(15, MotorType.kBrushless);
-    linkageMotor.setInverted(false);
+    linkageMotor.setInverted(true);
     linkageMotor.setIdleMode(IdleMode.kBrake);
 
     intakeLowerLimit = new DigitalInput(3);
@@ -145,7 +145,7 @@ public class IntakeSubsystem extends SubsystemBase {
       {
         // Starting position has been configured. Wait until a student has lifted
         // the intake into position and lock it there
-        if (linkageMotor.getEncoder().getPosition() <= upperLimit)
+        if (linkageMotor.getEncoder().getPosition() >= upperLimit)
         {
           linkageMotor.setIdleMode(IdleMode.kBrake);
           holdLiftPosition();
@@ -209,7 +209,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public boolean atUpperLimit()
   {
-    return encoderResetToLowerLimit && linkageMotor.getEncoder().getPosition() < upperLimit;
+    return encoderResetToLowerLimit && linkageMotor.getEncoder().getPosition() > upperLimit;
   }
 
   public void liftUp(double power){
