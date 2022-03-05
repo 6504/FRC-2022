@@ -1,5 +1,8 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Intake Mode" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="384" y="127"/>
+	</widget>
 	<widget field="At Intake Lower Limit" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="340" y="95"/>
 	</widget>
@@ -36,18 +39,6 @@
 		<height>470</height>
 		<property name="Camera Choice" value=""/>
 	</static-widget>
-	<widget field="Drive Command" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="0" y="146"/>
-	</widget>
-	<widget field="Autonomous Command" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="0" y="112"/>
-	</widget>
-	<widget field="Climb Command" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="0" y="78"/>
-	</widget>
-	<widget field="Intake Command" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="0" y="44"/>
-	</widget>
 	<widget field="Auto Mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
 		<location x="0" y="0"/>
 	</widget>
@@ -72,13 +63,53 @@
 		<height>470</height>
 		<property name="Camera Choice" value=""/>
 	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="212" y="16"/>
+		<property name="Text" value="Connection Indicator"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="182" y="13"/>
+		<width>21</width>
+		<height>20</height>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
+		<location x="685" y="8"/>
+		<width>592</width>
+		<height>439</height>
+		<property name="Camera Choice" value="rPi Camera 1"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
+		<location x="6" y="188"/>
+		<width>681</width>
+		<height>470</height>
+		<property name="Camera Choice" value=""/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="212" y="16"/>
+		<property name="Text" value="Connection Indicator"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="182" y="13"/>
+		<width>21</width>
+		<height>20</height>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
+		<location x="685" y="8"/>
+		<width>592</width>
+		<height>439</height>
+		<property name="Camera Choice" value="rPi Camera 1"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
+		<location x="6" y="188"/>
+		<width>681</width>
+		<height>470</height>
+		<property name="Camera Choice" value=""/>
+	</static-widget>
 </dashboard>
 <live-window>
 </live-window>
-	<hidden field="I Gain"/>
-	<hidden field="Max Output"/>
-	<hidden field="D Gain"/>
-	<hidden field="P Gain"/>
-	<hidden field="Cur Rotations"/>
-	<hidden field="Set Rotations"/>
+	<hidden field="Drive Command"/>
+	<hidden field="Climb Command"/>
+	<hidden field="Intake Command"/>
+	<hidden field="Autonomous Command"/>
 </xml>

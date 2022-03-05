@@ -40,6 +40,9 @@ public class IntakeSubsystem extends SubsystemBase {
 
   private static double upperLimit = 29;
 
+  private enum IntakeDirection { Off, In, Out};
+
+  private IntakeDirection intakeDirection = IntakeDirection.Off;
 
   public IntakeSubsystem() {
     linkageMotor = new CANSparkMax(15, MotorType.kBrushless);
@@ -94,6 +97,7 @@ public class IntakeSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Intake Linkage Position", linkageMotor.getEncoder().getPosition());
     SmartDashboard.putBoolean("Starting Position Configured", startingPositionConfigured);
     SmartDashboard.putBoolean("Encoder Reset To Lower Limit", encoderResetToLowerLimit);
+    SmartDashboard.putString("Intake Mode", intakeDirection.toString());
   }
 
   @Override
@@ -109,6 +113,7 @@ public class IntakeSubsystem extends SubsystemBase {
     double min = SmartDashboard.getNumber("Min Output", 0);
     double rotations = SmartDashboard.getNumber("Set Rotations", 0);*/
     SmartDashboard.putNumber("Intake Linkage Position", linkageMotor.getEncoder().getPosition());
+    SmartDashboard.putString("Intake Mode", intakeDirection.toString());
 
     // if PID coefficients on SmartDashboard have changed, write new values to controller
     /*if((p != kP)) { m_pidController.setP(p); kP = p; }
@@ -163,14 +168,17 @@ public class IntakeSubsystem extends SubsystemBase {
   
   public void intakeIn(){
     intake.set(-.5);
+    intakeDirection = IntakeDirection.In;
   }
   
   public void intakeOff(){
     intake.set(0);
+    intakeDirection = IntakeDirection.Off;
   }
 
   public void intakeOut(){
     intake.set(0.3);
+    intakeDirection = IntakeDirection.Out;
   }
 
   public void liftOff(){
