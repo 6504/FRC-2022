@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax;
+Trimport com.revrobotics.EncoderType;
+import com.revrobotics.SparkMaxRelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -48,6 +50,7 @@ public class ClimbSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putBoolean("Climb at lower limit", reachLowerLimit.get());
+    //SmartDashboard.putNumber("Climb Position", reachMotor.getEncoder().getPosition());
   }
 
   @Override
