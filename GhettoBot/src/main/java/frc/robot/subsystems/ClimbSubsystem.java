@@ -43,6 +43,7 @@ public class ClimbSubsystem extends SubsystemBase {
 
     reachMotor = new CANSparkMax(14, MotorType.kBrushed);
     reachMotor.setInverted(true);
+    reachMotor.setIdleMode(IdleMode.kBrake);
 
     reachLowerLimit = new DigitalInput(0);
   }
