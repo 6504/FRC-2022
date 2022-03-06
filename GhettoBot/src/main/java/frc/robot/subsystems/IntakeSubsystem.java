@@ -47,6 +47,8 @@ public class IntakeSubsystem extends SubsystemBase {
 
   private double lastDashboardUpdateTime = Timer.getFPGATimestamp();
 
+  private double intakeStartTime = -1;
+
   public IntakeSubsystem() {
     linkageMotor = new CANSparkMax(15, MotorType.kBrushless);
     linkageMotor.setInverted(true);
@@ -166,6 +168,12 @@ public class IntakeSubsystem extends SubsystemBase {
         }
       }
     }
+
+    // automatically turn off intake
+    if (Timer.getFPGATimestamp() - intakeStartTime > 3)
+    {
+      intakeOff();
+    }
   }
 
   @Override
@@ -175,6 +183,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
   
   public void intakeIn(){
+    intakeStartTime = Timer.getFPGATimestamp();
     intake.set(-.5);
     intakeDirection = IntakeDirection.In;
   }
@@ -182,10 +191,12 @@ public class IntakeSubsystem extends SubsystemBase {
   public void intakeOff(){
     intake.set(0);
     intakeDirection = IntakeDirection.Off;
+    intakeStartTime = -1;
   }
 
   public void intakeOut(){
-    intake.set(0.3);
+    intakeStartTime = Timer.getFPGATimestamp();
+    intake.set(0.5);
     intakeDirection = IntakeDirection.Out;
   }
 

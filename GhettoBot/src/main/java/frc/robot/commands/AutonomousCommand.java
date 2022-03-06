@@ -61,6 +61,8 @@ public class AutonomousCommand extends CommandBase {
 
     double intakeOutStartTime;
 
+    boolean done = false;
+
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
@@ -76,6 +78,7 @@ public class AutonomousCommand extends CommandBase {
             m_driveSubsystem.arcadeDrive(.4,0);
         } else {
             m_driveSubsystem.arcadeDrive(0,0);
+            done = true;
         }
 
         /*SmartDashboard.putString("Auto State", curState.toString());
@@ -138,13 +141,14 @@ public class AutonomousCommand extends CommandBase {
     @Override
     public boolean isFinished() {
         //return false;
-        if( Timer.getFPGATimestamp() > startTime + 5)
+        /*if( Timer.getFPGATimestamp() > startTime + 5)
         {
             return true;
         }
         else{
             return false;
-        }
+        }*/
+        return done;
     }
 
     @Override
