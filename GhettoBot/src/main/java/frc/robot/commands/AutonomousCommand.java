@@ -74,6 +74,8 @@ public class AutonomousCommand extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        //wheel circumference: 18.84
+        //-8.5 positions per rev
         if (m_driveSubsystem.motorController4.getEncoder().getPosition() < 18){
             m_driveSubsystem.arcadeDrive(.4,0);
         } else {
