@@ -28,6 +28,11 @@ public class DriveDistance extends CommandBase {
     public void initialize() {
         m_driveSubsystem.motorController4.getEncoder().setPosition(0);
         
+    }
+
+    // Called every time the scheduler runs while the command is scheduled.
+    @Override
+    public void execute() {
         if (m_distance > 0)
         {
             m_driveSubsystem.arcadeDrive(.4,0);
@@ -37,12 +42,6 @@ public class DriveDistance extends CommandBase {
             m_driveSubsystem.arcadeDrive(-.4,0);
         }
         //m_driveSubsystem.motorController4.getPIDController().setReference(m_distance, ControlType.kPosition);
-    }
-
-    // Called every time the scheduler runs while the command is scheduled.
-    @Override
-    public void execute() {
-       
     }
 
     // Called once the command ends or is interrupted.
