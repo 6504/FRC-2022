@@ -61,6 +61,7 @@ private double lastDashboardUpdateTime = Timer.getFPGATimestamp();
 motorController4 = new CANSparkMax(10,MotorType.kBrushless);
  //addChild("Motor Controller 4",motorController4);
  motorController4.setInverted(true);
+ motorController4.getEncoder().setPositionConversionFactor(2.216470588235294);
 
 motorController5 = new CANSparkMax(11,MotorType.kBrushless);
  //addChild("Motor Controller 5",motorController5);
