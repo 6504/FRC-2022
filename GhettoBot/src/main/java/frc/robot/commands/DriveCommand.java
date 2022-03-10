@@ -54,8 +54,8 @@ public class DriveCommand extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_driveSubsystem.arcadeDrive(RobotContainer.getInstance().getPS4DriveController().getLeftY(),
-                                     -RobotContainer.getInstance().getPS4DriveController().getRightX());
+        m_driveSubsystem.arcadeDrive(-RobotContainer.getInstance().getPS4DriveController().getLeftY(),
+                                     RobotContainer.getInstance().getPS4DriveController().getRightX());
     
 
     }
