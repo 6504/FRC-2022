@@ -61,7 +61,8 @@ private double lastDashboardUpdateTime = Timer.getFPGATimestamp();
 motorController4 = new CANSparkMax(10,MotorType.kBrushless);
  //addChild("Motor Controller 4",motorController4);
  motorController4.setInverted(false);
- 
+ motorController4.setOpenLoopRampRate(0.5);
+ motorController4.setClosedLoopRampRate(0.5);
 //wheel circumference: 18.84
 //-8.5 positions per rev
  // ~2.21 inches per revolution
@@ -70,7 +71,8 @@ motorController4 = new CANSparkMax(10,MotorType.kBrushless);
 motorController5 = new CANSparkMax(11,MotorType.kBrushless);
  //addChild("Motor Controller 5",motorController5);
  motorController5.setInverted(false);
-
+ motorController5.setOpenLoopRampRate(0.5);
+ motorController5.setClosedLoopRampRate(0.5);
 leftMotorControllerGroup = new MotorControllerGroup(motorController4, motorController5  );
  //addChild("Motor Controller Group 1",leftMotorControllerGroup);
  
@@ -78,10 +80,14 @@ leftMotorControllerGroup = new MotorControllerGroup(motorController4, motorContr
 motorController6 = new CANSparkMax(12,MotorType.kBrushless);
  //addChild("Motor Controller 6",motorController6);
  motorController6.setInverted(true);
+ motorController6.setOpenLoopRampRate(0.5);
+ motorController6.setClosedLoopRampRate(0.5);
 
 motorController7 = new CANSparkMax(13,MotorType.kBrushless);
  //addChild("Motor Controller 7",motorController7);
  motorController7.setInverted(true);
+ motorController7.setOpenLoopRampRate(0.5);
+ motorController7.setClosedLoopRampRate(0.5);
 
 rightMotorControllerGroup = new MotorControllerGroup(motorController6, motorController7  );
  //addChild("Motor Controller Group 2",rightMotorControllerGroup);
