@@ -56,14 +56,14 @@ public class AutonomousCommand2 extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        m_driveSubsystem.motorController4.getEncoder().setPosition(0);
+        m_driveSubsystem.leftMotorControllerLeader.getEncoder().setPosition(0);
         startTime = Timer.getFPGATimestamp();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        if (m_driveSubsystem.motorController4.getEncoder().getPosition() < 18){
+        if (m_driveSubsystem.leftMotorControllerLeader.getEncoder().getPosition() < 18){
             m_driveSubsystem.arcadeDrive(.4,0);
         } else {
             m_driveSubsystem.arcadeDrive(0,0);

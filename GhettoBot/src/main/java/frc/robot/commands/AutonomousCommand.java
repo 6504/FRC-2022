@@ -66,7 +66,7 @@ public class AutonomousCommand extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        m_driveSubsystem.motorController4.getEncoder().setPosition(0);
+        m_driveSubsystem.leftMotorControllerLeader.getEncoder().setPosition(0);
         startTime = Timer.getFPGATimestamp();
         curState = States.MoveForward;
     }

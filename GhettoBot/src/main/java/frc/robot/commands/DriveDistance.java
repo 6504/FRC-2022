@@ -26,7 +26,7 @@ public class DriveDistance extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        m_driveSubsystem.motorController4.getEncoder().setPosition(0);
+        m_driveSubsystem.leftMotorControllerLeader.getEncoder().setPosition(0);
         
     }
 
@@ -58,13 +58,13 @@ public class DriveDistance extends CommandBase {
         //-8.5 positions per rev
         if (m_distance > 0)
         {
-            if (m_driveSubsystem.motorController4.getEncoder().getPosition() < m_distance){
+            if (m_driveSubsystem.leftMotorControllerLeader.getEncoder().getPosition() < m_distance){
                 return false;
             } else {
                 return true;
             }
         } else {
-            if (m_driveSubsystem.motorController4.getEncoder().getPosition() > m_distance){
+            if (m_driveSubsystem.leftMotorControllerLeader.getEncoder().getPosition() > m_distance){
                 return false;
             } else {
                 return true;
