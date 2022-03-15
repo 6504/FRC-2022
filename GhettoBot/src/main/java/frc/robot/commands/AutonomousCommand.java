@@ -76,12 +76,12 @@ public class AutonomousCommand extends CommandBase {
     public void execute() {
         //wheel circumference: 18.84
         //-8.5 positions per rev
-        /*if (m_driveSubsystem.motorController4.getEncoder().getPosition() < 18){
+        if (m_driveSubsystem.leftMotorControllerLeader.getEncoder().getPosition() < 18){
             m_driveSubsystem.arcadeDrive(.4,0);
         } else {
             m_driveSubsystem.arcadeDrive(0,0);
             done = true;
-        }*/
+        }
 
         /*SmartDashboard.putString("Auto State", curState.toString());
 
