@@ -155,19 +155,22 @@ pidDrive.setSetpoint(leftMotorControllerLeader.getEncoder().getPosition()
 
     public void arcadeDrive(double speed, double direction){
 
+        // Try to keep this value constant when driving straight
+        double diffBetweenEncoderPosition = leftMotorControllerLeader.getEncoder().getPosition()
+        - rightMotorControllerLeader.getEncoder().getPosition();
+
         // Going straight
         if (direction >= -0.1 && direction <= 0.1)
         {
-            // Keep original setpoint
-            error = pidDrive.calculate(leftMotorControllerLeader.getEncoder().getPosition()
-                - rightMotorControllerLeader.getEncoder().getPosition());  
+            // Calculate error based on current difference
+            error = pidDrive.calculate(diffBetweenEncoderPosition);  
             direction = error;
         }
         else
         {
             // Turning - change set point
-            pidDrive.setSetpoint(leftMotorControllerLeader.getEncoder().getPosition()
-                - rightMotorControllerLeader.getEncoder().getPosition());
+            // Difference is changing intentionally, so change setpoint to match the difference
+            pidDrive.setSetpoint(diffBetweenEncoderPosition);
         }
 
         // Speed dead zone
