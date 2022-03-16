@@ -27,20 +27,46 @@
 	<widget field="Starting Position Configured" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="63"/>
 	</widget>
-	<widget field="Drive Position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="42"/>
-	</widget>
 	<widget field="Intake Mode" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="21"/>
+		<location x="294" y="41"/>
 	</widget>
 	<widget field="Encoder Reset To Lower Limit" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="0"/>
 	</widget>
+	<widget field="Drive Speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="298" y="133"/>
+	</widget>
+	<widget field="Drive Position Right" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="142" y="158"/>
+	</widget>
+	<widget field="Drive Position Left" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="5" y="27"/>
+	</widget>
 </dashboard>
 <live-window>
+	<widget field="ClimbSubsystem" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="14" y="10"/>
+	</widget>
+	<widget field="IntakeSubsystem" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="25" y="11"/>
+	</widget>
+	<widget field="DriveSubsystem" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="6" y="10"/>
+	</widget>
+	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="DigitalInput[0]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="6" y="16"/>
+			<height>20</height>
+			<width>88</width>
+		</widget>
+		<widget field="DigitalInput[3]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="6" y="36"/>
+			<height>20</height>
+			<width>88</width>
+		</widget>
+		<location x="17" y="7"/>
+		<width>100</width>
+		<height>62</height>
+	</widget>
 </live-window>
-	<hidden field="Drive Command"/>
-	<hidden field="Climb Command"/>
-	<hidden field="Intake Command"/>
-	<hidden field="Autonomous Command"/>
 </xml>
