@@ -87,8 +87,8 @@ public class IntakeSubsystem extends SubsystemBase {
     m_pidController.setOutputRange(kMinOutput, kMaxOutput);
 
     // Reset encoder
-    RelativeEncoder encoder = linkageMotor.getEncoder();
-    encoder.setPosition(0);
+    //RelativeEncoder encoder = linkageMotor.getEncoder();
+    //encoder.setPosition(0);
 
     // display PID coefficients on SmartDashboard
     /*SmartDashboard.putNumber("P Gain", kP);
