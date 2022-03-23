@@ -39,7 +39,7 @@ public class IntakeSubsystem extends SubsystemBase {
   private SparkMaxPIDController m_pidController;
   public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
 
-  private static double upperLimit = 29;
+  private static double upperLimit = 25;
 
   private enum IntakeDirection { Off, In, Out};
 
@@ -124,7 +124,7 @@ public class IntakeSubsystem extends SubsystemBase {
       SmartDashboard.putString("Intake Mode", intakeDirection.toString());
       SmartDashboard.putBoolean("Starting Position Configured", startingPositionConfigured);
       SmartDashboard.putBoolean("Encoder Reset To Lower Limit", encoderResetToLowerLimit);
-      SmartDashboard.putBoolean("At Intake Lower Limit", intakeLowerLimit.get());
+      SmartDashboard.putBoolean("At Intake Lower Limit", atLowerLimit());
       lastDashboardUpdateTime = Timer.getFPGATimestamp();
     }
 
@@ -142,7 +142,7 @@ public class IntakeSubsystem extends SubsystemBase {
     //PIDController objects are commanded to a set point using the SetReference() method.
     //m_pidController.setReference(rotations, CANSparkMax.ControlType.kPosition);
     
-    if (intakeLowerLimit.get() == true)
+    if (atLowerLimit())
     {
       // Reset the encoder to 0 since we're at the intake lower limit
       linkageMotor.getEncoder().setPosition(0);
@@ -218,7 +218,7 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public boolean atLowerLimit() {
-    return intakeLowerLimit.get();
+    return !intakeLowerLimit.get();
   }
 
   public void liftDown(double power){
