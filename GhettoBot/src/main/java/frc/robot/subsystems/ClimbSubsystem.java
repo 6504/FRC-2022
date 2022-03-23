@@ -33,15 +33,15 @@ public class ClimbSubsystem extends SubsystemBase {
   private double lastDashboardUpdateTime = Timer.getFPGATimestamp();
   
   public ClimbSubsystem() {
-    /*climbArmLeft = new CANSparkMax(17, MotorType.kBrushless);
+    climbArmLeft = new CANSparkMax(17, MotorType.kBrushless);
     climbArmLeft.setInverted(true);
     climbArmLeft.setIdleMode(IdleMode.kBrake);
-*/
+
     climbArmRight = new CANSparkMax(16, MotorType.kBrushless);
     climbArmRight.setInverted(false);
     climbArmRight.setIdleMode(IdleMode.kBrake);
 
-    pivotArmMotorControllerGroup = new MotorControllerGroup(climbArmRight);
+    pivotArmMotorControllerGroup = new MotorControllerGroup(climbArmRight, climbArmLeft);
 
     reachMotor = new CANSparkMax(14, MotorType.kBrushless);
     reachMotor.setInverted(false);
