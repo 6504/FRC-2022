@@ -43,7 +43,7 @@ public class ClimbSubsystem extends SubsystemBase {
 
     pivotArmMotorControllerGroup = new MotorControllerGroup(climbArmRight);
 
-    reachMotor = new CANSparkMax(14, MotorType.kBrushed);
+    reachMotor = new CANSparkMax(14, MotorType.kBrushless);
     reachMotor.setInverted(true);
     reachMotor.setIdleMode(IdleMode.kBrake);
 
