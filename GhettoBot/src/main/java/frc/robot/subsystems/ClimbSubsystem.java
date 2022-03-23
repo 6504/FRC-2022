@@ -44,7 +44,7 @@ public class ClimbSubsystem extends SubsystemBase {
     pivotArmMotorControllerGroup = new MotorControllerGroup(climbArmRight);
 
     reachMotor = new CANSparkMax(14, MotorType.kBrushless);
-    reachMotor.setInverted(true);
+    reachMotor.setInverted(false);
     reachMotor.setIdleMode(IdleMode.kBrake);
 
     reachLowerLimit = new DigitalInput(0);
@@ -55,9 +55,13 @@ public class ClimbSubsystem extends SubsystemBase {
     if (Timer.getFPGATimestamp() - lastDashboardUpdateTime > 1)
     {
       SmartDashboard.putBoolean("Climb at lower limit", reachLowerLimit.get());
-      //SmartDashboard.putNumber("Climb Position", reachMotor.getEncoder().getPosition());
+      SmartDashboard.putNumber("Climb Position", reachMotor.getEncoder().getPosition());
       
       lastDashboardUpdateTime = Timer.getFPGATimestamp();
+    }
+
+    if(reachLowerLimit.get()){
+      reachMotor.getEncoder().setPosition(0);
     }
   }
 
@@ -67,7 +71,14 @@ public class ClimbSubsystem extends SubsystemBase {
   }
 
   public void reachUp() {
-    reachMotor.set(1);
+    if (reachMotor.getEncoder().getPosition() >= 362)
+    {
+      stopReach();
+    }
+    else
+    {
+      reachMotor.set(1);
+    }
   }
   public void reachDown() {
     // Go down unless lower limit is hit
