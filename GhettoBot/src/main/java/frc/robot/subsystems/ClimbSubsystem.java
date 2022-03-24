@@ -44,7 +44,7 @@ public class ClimbSubsystem extends SubsystemBase {
     pivotArmMotorControllerGroup = new MotorControllerGroup(climbArmRight, climbArmLeft);
 
     reachMotor = new CANSparkMax(14, MotorType.kBrushless);
-    reachMotor.setInverted(false);
+    reachMotor.setInverted(true);
     reachMotor.setIdleMode(IdleMode.kBrake);
 
     reachLowerLimit = new DigitalInput(0);
@@ -71,7 +71,7 @@ public class ClimbSubsystem extends SubsystemBase {
   }
 
   public void reachUp() {
-    if (reachMotor.getEncoder().getPosition() >= 362)
+    if (reachMotor.getEncoder().getPosition() >= 357)
     {
       stopReach();
     }
