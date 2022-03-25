@@ -9,8 +9,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.EncoderType;
+import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.SparkMaxRelativeEncoder;
+import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -31,15 +32,47 @@ public class ClimbSubsystem extends SubsystemBase {
   private MotorControllerGroup pivotArmMotorControllerGroup;
   private DigitalInput reachLowerLimit;
   private double lastDashboardUpdateTime = Timer.getFPGATimestamp();
+
+  private SparkMaxPIDController m_pidControllerLeft, m_pidControllerRight;
+  public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
+
+  private boolean isHoldingArmPosition = false;
   
   public ClimbSubsystem() {
     climbArmLeft = new CANSparkMax(17, MotorType.kBrushless);
     climbArmLeft.setInverted(true);
     climbArmLeft.setIdleMode(IdleMode.kBrake);
 
+    // PID coefficients
+    kP = 0.4; 
+    kI = 1e-4;
+    kD = 1; 
+    kIz = 0; 
+    kFF = 0; 
+    kMaxOutput = 1; 
+    kMinOutput = -1;
+
+    m_pidControllerLeft = climbArmLeft.getPIDController();
+    
+    m_pidControllerLeft.setP(kP);
+    m_pidControllerLeft.setI(kI);
+    m_pidControllerLeft.setD(kD);
+    m_pidControllerLeft.setIZone(kIz);
+    m_pidControllerLeft.setFF(kFF);
+    m_pidControllerLeft.setOutputRange(kMinOutput, kMaxOutput);
+
     climbArmRight = new CANSparkMax(16, MotorType.kBrushless);
     climbArmRight.setInverted(false);
     climbArmRight.setIdleMode(IdleMode.kBrake);
+
+    m_pidControllerRight = climbArmRight.getPIDController();
+
+    m_pidControllerRight.setP(kP);
+    m_pidControllerRight.setI(kI);
+    m_pidControllerRight.setD(kD);
+    m_pidControllerRight.setIZone(kIz);
+    m_pidControllerRight.setFF(kFF);
+    m_pidControllerRight.setOutputRange(kMinOutput, kMaxOutput);
 
     pivotArmMotorControllerGroup = new MotorControllerGroup(climbArmRight, climbArmLeft);
 
@@ -56,6 +89,7 @@ public class ClimbSubsystem extends SubsystemBase {
     {
       SmartDashboard.putBoolean("Climb at lower limit", reachLowerLimit.get());
       SmartDashboard.putNumber("Climb Position", reachMotor.getEncoder().getPosition());
+      SmartDashboard.putNumber("Swing Position", climbArmLeft.getEncoder().getPosition());
       
       lastDashboardUpdateTime = Timer.getFPGATimestamp();
     }
@@ -98,14 +132,27 @@ public class ClimbSubsystem extends SubsystemBase {
   }
 
   public void armForward() {
+    isHoldingArmPosition = false;
     pivotArmMotorControllerGroup.set(0.2);
   }
   public void armBackward() {
+    isHoldingArmPosition = false;
     pivotArmMotorControllerGroup.set(-0.2);
   }
 
   public void stopArms() {
-    pivotArmMotorControllerGroup.set(0);
+    if (false == isHoldingArmPosition)
+    {
+      pivotArmMotorControllerGroup.set(0);
+
+      // Hold current position
+      double curPositionLeft = climbArmLeft.getEncoder().getPosition();
+      m_pidControllerLeft.setReference(curPositionLeft, ControlType.kPosition);
+
+      double curPositionRight = climbArmRight.getEncoder().getPosition();
+      m_pidControllerRight.setReference(curPositionRight, ControlType.kPosition);
+      isHoldingArmPosition = true;
+    }
   }
 
 }
