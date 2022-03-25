@@ -105,7 +105,7 @@ public class ClimbSubsystem extends SubsystemBase {
   }
 
   public void reachUp() {
-    if (reachMotor.getEncoder().getPosition() >= 357)
+    if (reachMotor.getEncoder().getPosition() >= 364)
     {
       stopReach();
     }
