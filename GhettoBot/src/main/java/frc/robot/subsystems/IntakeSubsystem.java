@@ -184,7 +184,7 @@ public class IntakeSubsystem extends SubsystemBase {
   
   public void intakeIn(){
     intakeStartTime = Timer.getFPGATimestamp();
-    intake.set(-.5);
+    intake.set(-1);
     intakeDirection = IntakeDirection.In;
   }
   
@@ -196,7 +196,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public void intakeOut(){
     intakeStartTime = Timer.getFPGATimestamp();
-    intake.set(0.5);
+    intake.set(1);
     intakeDirection = IntakeDirection.Out;
   }
 

@@ -87,6 +87,7 @@ private final XboxController xboxController = new XboxController(1);
     m_chooser.setDefaultOption("DriveDistance", new DriveDistance(m_driveSubsystem, -36));//TODO:add other sub
     m_chooser.addOption("Ball Dump", 
       new SequentialCommandGroup(
+        new WaitCommand(7),
         new DriveDistance(m_driveSubsystem, 18),
         new IntakeOutCommand(m_intakeSubsystem),
         new WaitCommand(1),

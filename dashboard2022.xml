@@ -1,19 +1,19 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Climb Position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="168"/>
+	</widget>
+	<widget field="Swing Position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="21" y="147"/>
+	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
-		<location x="621" y="48"/>
-		<width>639</width>
-		<height>557</height>
-		<property name="Camera Choice" value="rPi Camera 1"/>
-	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
-		<location x="0" y="191"/>
+		<location x="475" y="119"/>
 		<width>564</width>
 		<height>438</height>
 		<property name="Camera Choice" value=""/>
 	</static-widget>
 	<widget field="Auto Mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="0" y="147"/>
+		<location x="368" y="20"/>
 	</widget>
 	<widget field="At Intake Lower Limit" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="126"/>
@@ -38,9 +38,29 @@
 	</widget>
 </dashboard>
 <live-window>
+	<widget field="ClimbSubsystem" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="69"/>
+	</widget>
+	<widget field="DriveSubsystem" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="46"/>
+	</widget>
+	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="DigitalInput[0]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="6" y="16"/>
+			<height>20</height>
+			<width>88</width>
+		</widget>
+		<widget field="DigitalInput[3]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="6" y="36"/>
+			<height>20</height>
+			<width>88</width>
+		</widget>
+		<location x="0" y="23"/>
+		<width>100</width>
+		<height>62</height>
+	</widget>
+	<widget field="IntakeSubsystem" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="0"/>
+	</widget>
 </live-window>
-	<hidden field="Drive Command"/>
-	<hidden field="Climb Command"/>
-	<hidden field="Intake Command"/>
-	<hidden field="Autonomous Command"/>
 </xml>
