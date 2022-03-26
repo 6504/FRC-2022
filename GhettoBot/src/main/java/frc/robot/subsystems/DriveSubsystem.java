@@ -75,7 +75,7 @@ leftMotorControllerLeader = new CANSparkMax(10,MotorType.kBrushless);
 //wheel circumference: 18.84
 //-8.5 positions per rev
  // ~2.21 inches per revolution
- leftMotorControllerLeader.getEncoder().setPositionConversionFactor(2.216470588235294);
+ leftMotorControllerLeader.getEncoder().setPositionConversionFactor(1.45);
 
 leftFollowerMotorController = new CANSparkMax(11,MotorType.kBrushless);
  //addChild("Motor Controller 5",motorController5);
