@@ -134,6 +134,8 @@ leftMotorControllerLeader.getEncoder().setPosition(0);
         if (Timer.getFPGATimestamp() - lastDashboardUpdateTime > 1)
         {
             SmartDashboard.putNumber("Drive Position", leftMotorControllerLeader.getEncoder().getPosition());
+            SmartDashboard.putNumber("Fault", rightMotorControllerLeader.getFaults());
+            SmartDashboard.putNumber("Sticky Fault", rightMotorControllerLeader.getStickyFaults());
 
             lastDashboardUpdateTime = Timer.getFPGATimestamp();
         }
