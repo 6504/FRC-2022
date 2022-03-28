@@ -42,6 +42,7 @@ public class ClimbSubsystem extends SubsystemBase {
     climbArmLeft = new CANSparkMax(17, MotorType.kBrushless);
     climbArmLeft.setInverted(true);
     climbArmLeft.setIdleMode(IdleMode.kBrake);
+    climbArmLeft.setOpenLoopRampRate(0.5);
 
     // PID coefficients
     kP = 0.4; 
@@ -64,6 +65,7 @@ public class ClimbSubsystem extends SubsystemBase {
     climbArmRight = new CANSparkMax(16, MotorType.kBrushless);
     climbArmRight.setInverted(false);
     climbArmRight.setIdleMode(IdleMode.kBrake);
+    climbArmRight.setOpenLoopRampRate(0.5);
 
     m_pidControllerRight = climbArmRight.getPIDController();
 
@@ -133,11 +135,11 @@ public class ClimbSubsystem extends SubsystemBase {
 
   public void armForward() {
     isHoldingArmPosition = false;
-    pivotArmMotorControllerGroup.set(0.2);
+    pivotArmMotorControllerGroup.set(1);
   }
   public void armBackward() {
     isHoldingArmPosition = false;
-    pivotArmMotorControllerGroup.set(-0.2);
+    pivotArmMotorControllerGroup.set(-1);
   }
 
   public void stopArms() {
