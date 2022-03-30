@@ -125,6 +125,7 @@ public class IntakeSubsystem extends SubsystemBase {
       SmartDashboard.putBoolean("Starting Position Configured", startingPositionConfigured);
       SmartDashboard.putBoolean("Encoder Reset To Lower Limit", encoderResetToLowerLimit);
       SmartDashboard.putBoolean("At Intake Lower Limit", atLowerLimit());
+      SmartDashboard.putBoolean("At Intake Upper Limit", atUpperLimit());
       lastDashboardUpdateTime = Timer.getFPGATimestamp();
     }
 

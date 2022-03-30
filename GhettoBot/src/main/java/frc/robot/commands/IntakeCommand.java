@@ -82,12 +82,13 @@ public class IntakeCommand extends CommandBase {
             m_IntakeSubsystem.holdLiftPosition();
 
         //pressing R1 turns off intake and brings arm up
-        /*if (controller.getR1Button())
+        if (controller.getR1Button()){
             R1WasPressed = true;
             m_IntakeSubsystem.intakeOff();
+        }
         if (R1WasPressed)
             m_IntakeSubsystem.liftUp(Math.sqrt(.5)); //move motor down
-        if (intakeUpperLimit.get() || controller.getCrossButtonPressed()){ //if switch is touched 
+        if (m_IntakeSubsystem.atUpperLimit() || controller.getCrossButtonPressed()){ //if switch is touched 
             R1WasPressed = false;
             isResetUp = true;
         }
@@ -96,20 +97,21 @@ public class IntakeCommand extends CommandBase {
             isResetUp = false;
         }
 
-        //pressing L1 button brings arm down and turns on intake
-        if (controller.getL1Button())
+        //pressing L1 button brings arm down and turns off intake
+        if (controller.getL1Button()) {
             L1WasPressed = true;
-            m_IntakeSubsystem.intakeIn();
+            m_IntakeSubsystem.intakeOff();
+        }
         if (L1WasPressed)
             m_IntakeSubsystem.liftDown(Math.sqrt(.5)); //move motor down
-        if (intakeLowerLimit.get() || controller.getCrossButtonPressed()){ //if switch is touched 
+        if (m_IntakeSubsystem.atLowerLimit() || controller.getCrossButtonPressed()){ //if switch is touched 
             L1WasPressed = false;
             isResetDown = true;
         }
         if (L1WasPressed == false && isResetDown == true) {
             m_IntakeSubsystem.liftOff();//stop motor
             isResetDown = false;
-        }*/
+        }
 
 
             
