@@ -137,6 +137,27 @@ leftMotorControllerLeader.getEncoder().setPosition(0);
             SmartDashboard.putNumber("Sticky Fault", rightMotorControllerLeader.getStickyFaults());
             SmartDashboard.putNumber("Angle", ahrs.getAngle());
 
+            if (rightMotorControllerLeader.getFaults() > 0)
+            {
+                System.out.println("Right Lead Motor Controller Fault: " + rightMotorControllerLeader.getFaults());
+                rightMotorControllerLeader.clearFaults();
+            }
+            if (rightFollowerMotorController.getFaults() > 0)
+            {
+                System.out.println("Right Follower Motor Controller Fault: " + rightFollowerMotorController.getFaults());
+                rightFollowerMotorController.clearFaults();
+            }
+            if (leftMotorControllerLeader.getFaults() > 0)
+            {
+                System.out.println("Left Lead Motor Controller Fault: " + leftMotorControllerLeader.getFaults());
+                leftMotorControllerLeader.clearFaults();
+            }
+            if (leftFollowerMotorController.getFaults() > 0)
+            {
+                System.out.println("Left Follower Motor Controller Fault: " +  leftFollowerMotorController.getFaults());
+                leftMotorControllerLeader.clearFaults();
+            }
+
             lastDashboardUpdateTime = Timer.getFPGATimestamp();
         }
     }
