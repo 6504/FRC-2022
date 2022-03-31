@@ -1,6 +1,6 @@
 
 
-package frc.robot.commands;
+package frc.robot.commands.SeqCommands;
 import com.revrobotics.CANSparkMax.ControlType;
 
 import edu.wpi.first.wpilibj.Timer;
