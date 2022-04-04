@@ -175,7 +175,7 @@ leftMotorControllerLeader.getEncoder().setPosition(0);
     }
 
     public double getHeading() {
-        return Math.IEEEremainder(ahrs.getAngle(), 360);
+        return Math.IEEEremainder(ahrs.getAngle(), 360) * -1;
     }
 
     public void resetAngle() {
