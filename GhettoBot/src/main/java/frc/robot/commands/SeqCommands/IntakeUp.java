@@ -11,6 +11,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 public class IntakeUp extends CommandBase {
 
     private final IntakeSubsystem m_IntakeSubsystem;
+    private final double intakeStartTime;
 
     public IntakeUp(IntakeSubsystem iSubsystem ) {
 
@@ -22,24 +23,31 @@ public class IntakeUp extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        m_IntakeSubsystem.liftUp(.8);
+        intakeStartTime = Timer.getFPGATimestamp()
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-       
+        m_IntakeSubsystem.liftUp(.8);
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        m_intakeSubsystem.holdLiftPos();
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return true;
+        if (Timer.getFPGATimestamp() - intakeStartTime > 5) { //Stops after 5 seconds
+            return true;
+        }
+        if (m_intakeSubsystem.atUpperLimit) { //Stops once reaches upper limit
+            return true;
+        }
+        return false;
     }
 
     @Override
