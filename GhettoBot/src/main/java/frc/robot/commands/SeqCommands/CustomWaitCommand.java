@@ -31,7 +31,7 @@ public class CustomWaitCommand extends CommandBase {
 
   @Override
   public void initialize() {
-    m_duration = SmartDashboard.getNumber("delay for ball dump", m_duration);
+    m_duration = SmartDashboard.getNumber("delay for all", m_duration);
     m_timer.reset();
     m_timer.start();
   }

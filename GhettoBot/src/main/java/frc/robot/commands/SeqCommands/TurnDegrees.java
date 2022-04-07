@@ -15,16 +15,16 @@ public class TurnDegrees extends PIDCommand {
 
     DriveSubsystem drive_subsystem;
 
-    static final double kP = 0.05; //originally 1 in the example, .05 when tested
-    static final double kI = 0.00;
-    static final double kD = 0.00;
+    static double kP = 0.05; //DASHBOARD WILL OVERRIDE //originally 1 in the example, .05 when tested
+    static final double kI = 0.00; 
+    static double kD = 0.0175; //DASHBOARD WILL OVERRIDE
     static final double kF = 0.00;
     static final double kTurnToleranceDeg = 1;
     static final double kTurnRateToleranceDegPerS = 5;
 
     // targetAngleDegrees - The angle to turn to
     public TurnDegrees(DriveSubsystem dSubsystem, double targetAngleDegrees) {
-        super(
+        super(  
                 new PIDController(kP, kI, kD),
 
                 // Close loop on heading
@@ -58,6 +58,8 @@ public class TurnDegrees extends PIDCommand {
     public void initialize() {
         //m_driveSubsystem.leftMotorControllerLeader.getEncoder().setPosition(0);
         drive_subsystem.resetAngle();
+        getController().setP(SmartDashboard.getNumber("kP for turning", kP));
+        getController().setD(SmartDashboard.getNumber("kD for turning", kD));
     }
 
     @Override
