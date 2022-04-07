@@ -84,10 +84,11 @@ public class IntakeCommand extends CommandBase {
         //pressing R1 turns off intake and brings arm up
         if (controller.getR1Button()){
             R1WasPressed = true;
+            L1WasPressed = false;
             m_IntakeSubsystem.intakeOff();
         }
         if (R1WasPressed)
-            m_IntakeSubsystem.liftUp(Math.sqrt(.5)); //move motor down
+            m_IntakeSubsystem.liftUp(Math.sqrt(.5)); //move motor up
         if (m_IntakeSubsystem.atUpperLimit() || controller.getCrossButtonPressed()){ //if switch is touched 
             R1WasPressed = false;
             isResetUp = true;
@@ -100,6 +101,7 @@ public class IntakeCommand extends CommandBase {
         //pressing L1 button brings arm down and turns off intake
         if (controller.getL1Button()) {
             L1WasPressed = true;
+            R1WasPressed = false;
             m_IntakeSubsystem.intakeOff();
         }
         if (L1WasPressed)

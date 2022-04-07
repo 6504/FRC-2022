@@ -15,7 +15,7 @@ public class TurnDegrees extends PIDCommand {
 
     DriveSubsystem drive_subsystem;
 
-    static final double kP = 0.05;
+    static final double kP = 0.025; //originally 1 in the example, .05 when tested
     static final double kI = 0.00;
     static final double kD = 0.00;
     static final double kF = 0.00;
