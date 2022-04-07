@@ -11,10 +11,10 @@ import frc.robot.subsystems.IntakeSubsystem;
 public class IntakeUp extends CommandBase {
 
     private final IntakeSubsystem m_IntakeSubsystem;
-    private final double intakeStartTime;
+    private double intakeStartTime;
 
     public IntakeUp(IntakeSubsystem iSubsystem ) {
-
+        intakeStartTime = 0;
         m_IntakeSubsystem = iSubsystem;
 
         addRequirements(m_IntakeSubsystem);    
@@ -23,7 +23,7 @@ public class IntakeUp extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        intakeStartTime = Timer.getFPGATimestamp()
+        intakeStartTime = Timer.getFPGATimestamp();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -35,7 +35,7 @@ public class IntakeUp extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        m_intakeSubsystem.holdLiftPos();
+        m_IntakeSubsystem.holdLiftPosition();
     }
 
     // Returns true when the command should end.
@@ -44,7 +44,7 @@ public class IntakeUp extends CommandBase {
         if (Timer.getFPGATimestamp() - intakeStartTime > 5) { //Stops after 5 seconds
             return true;
         }
-        if (m_intakeSubsystem.atUpperLimit) { //Stops once reaches upper limit
+        if (m_IntakeSubsystem.atUpperLimit()) { //Stops once reaches upper limit
             return true;
         }
         return false;

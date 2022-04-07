@@ -8,12 +8,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 
-public class IntakeDown extends CommandBase {
+public class IntakeDownIn extends CommandBase {
 
     private final IntakeSubsystem m_IntakeSubsystem;
     private double intakeStartTime;
 
-    public IntakeDown(IntakeSubsystem iSubsystem ) {
+    public IntakeDownIn(IntakeSubsystem iSubsystem ) {
         intakeStartTime = 0;
         m_IntakeSubsystem = iSubsystem;
 
@@ -24,6 +24,7 @@ public class IntakeDown extends CommandBase {
     @Override
     public void initialize() {
         intakeStartTime = Timer.getFPGATimestamp();
+        m_IntakeSubsystem.intakeIn();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
