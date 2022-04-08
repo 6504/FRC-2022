@@ -96,6 +96,7 @@ private final XboxController xboxController = new XboxController(1);
     SmartDashboard.putNumber("delay for all", 0);
     SmartDashboard.putNumber("kP for turning", 0.05);
     SmartDashboard.putNumber("kD for turning", 0.0175);
+
     //m_chooser.setDefaultOption("Autonomous Command", new AutonomousCommand(m_driveSubsystem, m_intakeSubsystem));//TODO:add other sub
     m_chooser.setDefaultOption("DriveDistance", new DriveDistance(m_driveSubsystem, -36));//TODO:add other sub
     
@@ -105,12 +106,12 @@ private final XboxController xboxController = new XboxController(1);
       new CustomWaitCommand(1),
       new IntakeDown(m_intakeSubsystem),//face robot outward
       new IntakeInCommand(m_intakeSubsystem),//pick up ball 2
-      new DriveDistance(m_driveSubsystem, 37), //need tuning
+      new DriveDistance(m_driveSubsystem, 33), //need tuning
       new WaitCommand(1.5),
       new IntakeOffCommand(m_intakeSubsystem),
       new IntakeUp(m_intakeSubsystem),
       new TurnDegrees(m_driveSubsystem, 180),
-      new DriveDistance(m_driveSubsystem, 72), //120-36=84
+      new DriveDistance(m_driveSubsystem, 60), //120-36=84
       new IntakeOutCommand(m_intakeSubsystem)
     ));
 

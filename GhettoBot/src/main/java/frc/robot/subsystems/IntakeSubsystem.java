@@ -221,8 +221,10 @@ public class IntakeSubsystem extends SubsystemBase {
   public boolean atLowerLimit() {
     return !intakeLowerLimit.get();
   }
-
   public void liftDown(double power){
+    liftDown(power, 0.5);
+  }
+  public void liftDown(double power, double maxPower){
     if (atLowerLimit())
     {
       holdLiftPosition();
@@ -230,7 +232,7 @@ public class IntakeSubsystem extends SubsystemBase {
     else
     {
       holdLiftPos = false;
-      double adjustedPower = Math.max(-power * power, -0.4);
+      double adjustedPower = Math.max(-power * power, -maxPower);
       linkageMotor.set(adjustedPower);
     }
   }
@@ -248,7 +250,7 @@ public class IntakeSubsystem extends SubsystemBase {
     else
     {
       holdLiftPos = false;
-      double adjustedPower = Math.min(power * power, 0.5);
+      double adjustedPower = Math.min(power * power, 0.7);
       linkageMotor.set(adjustedPower);
     }
   }
