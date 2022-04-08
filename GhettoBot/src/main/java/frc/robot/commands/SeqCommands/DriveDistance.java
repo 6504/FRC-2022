@@ -35,11 +35,11 @@ public class DriveDistance extends CommandBase {
     public void execute() {
         if (m_distance > 0)
         {
-            m_driveSubsystem.arcadeDrive(1,0);
+            m_driveSubsystem.arcadeDrive(.4,0);
         }
         else
         {
-            m_driveSubsystem.arcadeDrive(-1,0);
+            m_driveSubsystem.arcadeDrive(-.4,0);
         }
         //m_driveSubsystem.motorController4.getPIDController().setReference(m_distance, ControlType.kPosition);
     }

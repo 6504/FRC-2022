@@ -98,8 +98,20 @@ private final XboxController xboxController = new XboxController(1);
     SmartDashboard.putNumber("kD for turning", 0.0175);
 
     //m_chooser.setDefaultOption("Autonomous Command", new AutonomousCommand(m_driveSubsystem, m_intakeSubsystem));//TODO:add other sub
-    m_chooser.setDefaultOption("DriveDistance", new DriveDistance(m_driveSubsystem, -36));//TODO:add other sub
-    
+    m_chooser.setDefaultOption("Drive backward", 
+    new SequentialCommandGroup(
+      new CustomWaitCommand(1),
+      new DriveDistance(m_driveSubsystem, -36)
+    ));
+    m_chooser.setDefaultOption("do nothing", 
+    new SequentialCommandGroup(
+      new CustomWaitCommand(1)
+    ));
+    m_chooser.setDefaultOption("Drive forward", 
+    new SequentialCommandGroup(
+      new CustomWaitCommand(1),
+      new DriveDistance(m_driveSubsystem, 18)
+    ));
     //--PICK UP OUTSIDE BALL AND DROP BOTH BALLS
     m_chooser.setDefaultOption("2BallAuto", 
     new SequentialCommandGroup(
