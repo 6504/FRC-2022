@@ -39,7 +39,7 @@ public class IntakeSubsystem extends SubsystemBase {
   private SparkMaxPIDController m_pidController;
   public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
 
-  private static double upperLimit = 25;
+  private static double upperLimit = 21.5; //22 I THINK
 
   private enum IntakeDirection { Off, In, Out};
 

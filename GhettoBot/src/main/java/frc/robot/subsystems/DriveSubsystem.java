@@ -169,7 +169,7 @@ leftMotorControllerLeader.getEncoder().setPosition(0);
     }
 
     public void arcadeDrive(double speed, double direction){
-        differentialDrive1.arcadeDrive(speed, direction * 0.75, true);
+        differentialDrive1.arcadeDrive(speed, direction * 0.7, true);
         
 
     }

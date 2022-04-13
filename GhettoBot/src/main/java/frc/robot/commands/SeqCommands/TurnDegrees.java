@@ -17,10 +17,12 @@ public class TurnDegrees extends PIDCommand {
 
     static double kP = 0.05; //DASHBOARD WILL OVERRIDE //originally 1 in the example, .05 when tested
     static final double kI = 0.00; 
-    static double kD = 0.0175; //DASHBOARD WILL OVERRIDE
+    static double kD = 0.03; //DASHBOARD WILL OVERRIDE
     static final double kF = 0.00;
-    static final double kTurnToleranceDeg = 1;
-    static final double kTurnRateToleranceDegPerS = 5;
+    static final double kTurnToleranceDeg = 3;
+    static final double kTurnRateToleranceDegPerS = 3;
+
+    private double turnStartTime;
 
     // targetAngleDegrees - The angle to turn to
     public TurnDegrees(DriveSubsystem dSubsystem, double targetAngleDegrees) {
@@ -51,6 +53,7 @@ public class TurnDegrees extends PIDCommand {
 
         getController().setTolerance(kTurnToleranceDeg, kTurnRateToleranceDegPerS);
         drive_subsystem = dSubsystem;
+        turnStartTime = 0;
     }
 
     // Called when the command is initially scheduled.
@@ -60,6 +63,7 @@ public class TurnDegrees extends PIDCommand {
         drive_subsystem.resetAngle();
         getController().setP(SmartDashboard.getNumber("kP for turning", kP));
         getController().setD(SmartDashboard.getNumber("kD for turning", kD));
+        turnStartTime = Timer.getFPGATimestamp();
     }
 
     @Override
@@ -70,7 +74,9 @@ public class TurnDegrees extends PIDCommand {
 
     @Override
     public boolean isFinished() {
-  
+        if (Timer.getFPGATimestamp() - turnStartTime > 4.5) { //Stops after 6 seconds
+            return true;
+        }
       // End when the controller is at the reference.
       return getController().atSetpoint();
     }
